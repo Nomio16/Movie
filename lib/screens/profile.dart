@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie/screens/login.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -11,7 +12,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text("Profile page"),
+      child: LoginPage(),
     );
   }
 }
