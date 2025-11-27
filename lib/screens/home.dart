@@ -1,32 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:movie/providers/common.dart';
 import 'package:movie/screens/movies.dart';
 import 'package:movie/screens/profile.dart';
 import 'package:movie/screens/wishlist.dart';
+import 'package:provider/provider.dart';   
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePage extends StatelessWidget {
+  HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
+final List<Widget> _totalPage = [MoviesPage(), WishListPage(),ProfilePage()];
 
-class _HomePageState extends State<HomePage> {
-  int _currentIndex = 2;
-  final List<Widget> _totalPage = [MoviesPage(), WishListPage(),ProfilePage()];
-  void _setCurrentIndex(int val){
-    setState(() {
-      _currentIndex = val;
-    });
-  }
-
-  @override
+@override
   Widget build(BuildContext context) {
+    return Consumer<CommonProvider>(builder: ((context, provider, child){
     return Scaffold(
       backgroundColor: Color(0xff36393f),
-      body:SafeArea(child: _totalPage[_currentIndex],),
+      body:SafeArea(child: _totalPage[provider.currentIdx],),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: _setCurrentIndex ,
+        currentIndex: provider.currentIdx,
+        onTap: provider.changeCurrentIdx ,
         items: 
       [
         BottomNavigationBarItem(
@@ -41,5 +33,6 @@ class _HomePageState extends State<HomePage> {
           label: "Профайл"),
       ]),
     );
+    }),);
   }
 }

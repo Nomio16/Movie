@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movie/providers/common.dart';
 import 'package:movie/screens/login.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -11,8 +13,16 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: LoginPage(),
-    );
+    return Consumer<CommonProvider>(builder:((context, provider, child){
+      return provider.isLoggedIn 
+      ?Center(
+        child: ElevatedButton(
+          onPressed:provider.onLogout, 
+          child: Text("Гарах")),
+      )
+      :Center(
+        child: LoginPage(),
+      );
+    }));
   }
 }

@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:movie/model/index.dart';
+import 'package:movie/screens/movie_detail.dart';
 
 class MovieCard extends StatelessWidget {
   final MovieModel data ;
   const MovieCard({required this.data, super.key});
-
+   
+  void _onCardTap(BuildContext context) {
+    Navigator.push(context, MaterialPageRoute(builder: (_) => MovieDetailPage( data)));
+    }
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width/3-20;
-    return Column(
+    return InkWell( 
+      onTap:()=> _onCardTap(context),
+      child:Column(
       children: [Container(
         height: width*1.5,
         width: width,
@@ -25,6 +31,6 @@ class MovieCard extends StatelessWidget {
         textAlign: TextAlign.center,)),
         SizedBox(height: 10,),
       ]
-    );
+    ));
   }
 }

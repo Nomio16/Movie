@@ -1,5 +1,6 @@
 import 'dart:math';
-
+import 'package:provider/provider.dart'; 
+import 'package:movie/providers/common.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -17,7 +18,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void _OnSubmit(){
     if(_formKey.currentState!.validate()){
-      print("Амжилттай нэвтэрлээ");
+      Provider.of<CommonProvider>(context, listen:false).onLogin();
     }
   }
 

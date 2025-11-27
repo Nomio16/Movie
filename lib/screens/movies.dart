@@ -1,12 +1,13 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:movie/model/index.dart';
+import 'package:movie/providers/common.dart';
 import 'package:movie/widgets/movie_special_card.dart';
 import 'package:movie/widgets/movie_card.dart';
+import 'package:provider/provider.dart'; 
 
 class MoviesPage extends StatefulWidget {
-  const MoviesPage({super.key});
+  const MoviesPage( {super.key});
 
   @override
   State<MoviesPage> createState() => _MoviesPageState();
@@ -15,8 +16,9 @@ class MoviesPage extends StatefulWidget {
 class _MoviesPageState extends State<MoviesPage> {
   Future<List<MovieModel>> _getDate() async{
     String res = await DefaultAssetBundle.of(context).loadString("assets/movie.json");
-    return MovieModel.fromList(jsonDecode(res));
-
+    List<MovieModel> data =  MovieModel.fromList(jsonDecode(res));
+    Provider.of<CommonProvider>(context, listen:false).setMovies(data);
+    return data;
   }
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,7 @@ class _MoviesPageState extends State<MoviesPage> {
                 child: Row(
                   children: List.generate(
                     _specialData!.length,
-                    (index)=> MovieSpecialCard(data: _specialData[index]),
+                    (index)=> MovieSpecialCard( data:_specialData[index]),
                   ))
                 ),
              SizedBox(height: 20,),
