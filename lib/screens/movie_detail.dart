@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie/model/index.dart';
 import 'package:provider/provider.dart';
 import 'package:movie/providers/common.dart';
+import 'package:movie/utils/index.dart';
 
 class MovieDetailPage extends StatefulWidget {
   final MovieModel data;
@@ -77,7 +78,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                 ),
                                 const SizedBox(height: 10),
                                 Text(
-                                  "${widget.data.publishedYear} | ${widget.data.durationMin} | ${widget.data.type}",
+                                  "${widget.data.publishedYear} | ${Utils.integerMinToStrin(widget.data.durationMin)} | ${widget.data.type}",
                                   style: const TextStyle(
                                     fontSize: 14,
                                     color: Color(0xff777777),

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/model/index.dart';
 import 'package:movie/providers/common.dart';
@@ -34,7 +35,7 @@ class _MoviesPageState extends State<MoviesPage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            Text("Шилдэг", style: TextStyle(
+            Text("top".tr(), style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
               color: Colors.white)
@@ -49,7 +50,7 @@ class _MoviesPageState extends State<MoviesPage> {
                   ))
                 ),
              SizedBox(height: 20,),
-            Text("Бүх кинонууд", style: TextStyle(
+            Text("all".tr(), style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
               color: Colors.white)),

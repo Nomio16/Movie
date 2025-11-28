@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:provider/provider.dart'; 
 import 'package:movie/providers/common.dart';
 import 'package:flutter/material.dart';
+import "package:movie/global_keys.dart";
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -18,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void _OnSubmit(){
     if(_formKey.currentState!.validate()){
-      Provider.of<CommonProvider>(context, listen:false).onLogin();
+      Provider.of<CommonProvider>(GlobalKeys.navigatorKey.currentContext!, listen:false).onLogin();
     }
   }
 

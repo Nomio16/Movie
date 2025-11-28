@@ -1,10 +1,27 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/screens/home.dart';
+import 'package:movie/theme/styles.dart';
 import 'package:provider/provider.dart';
 import 'package:movie/providers/common.dart';
+import 'package:movie/global_keys.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  await Firebase.initializeApp();
+  
+  runApp(
+    EasyLocalization(
+      supportedLocales: [Locale('en', 'US'), Locale('mn', 'MN')],
+      path: 'assets/translations', // <-- change the path of the translation files 
+      fallbackLocale: Locale('en', 'US'),
+      child: MyApp()
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -17,11 +34,13 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider(create: (_) => CommonProvider()),
     ], 
       child:  MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        ),
+        title: 'Movie app',
+        theme: myTheme,
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
         home: HomePage(),
+        navigatorKey: GlobalKeys.navigatorKey,
     ));
   }
 }

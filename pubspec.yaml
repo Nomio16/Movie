@@ -17,6 +17,10 @@ dependencies:
   cupertino_icons: ^1.0.8
   build_runner: ^2.10.4
   provider: ^6.1.5+1
+  easy_localization: ^3.0.8
+  image_picker: ^1.2.1
+  firebase_core: ^4.2.1
+  firebase_messaging: ^16.0.4
   
 
 dev_dependencies:
@@ -34,6 +38,7 @@ flutter:
 
   assets:
     - assets/movie.json
+    - assets/translations/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
